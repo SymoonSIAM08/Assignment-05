@@ -7,12 +7,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.45.0/dist/full.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="bg-gray-100 p-8">
+<!-- <body class="bg-gray-100 p-8"> -->
+<body class="bg-gray-100">
+
+    <main class="max-w-screen-xl mx-auto px-4 md:px-8 lg:px-16">
+        <!-- <header> -->
+            <div class="navbar bg-white shadow-md sticky top-0 z-50"> 
+                <div class="navbar-start">
+                    <button class="btn btn-success" onclick="window.location.href='blog.html'">Blog</button> 
+                </div>
+                <div class="navbar-center">
+                    <img src="assets/logo.png" alt="Logo" class="w-12 h-12 mr-2">
+                    <a class="text-xl font-bold">Donate Bangladesh</a>
+                </div>
+                <div class="navbar-end flex items-center space-x-2">
+                    <img src="assets/coin.png" alt="Coin" class="w-6 h-6">
+                    <h2 id="balanceAmount"><span id="balanceDisplay"></span> BDT</h2>
+                </div>
+            </div> 
+
+
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
 
         <div class="tabs mt-5 flex justify-center">
 
-            <a href="index.html" class="btn btn-primary justify-center ">Homepage</a>
+            <!-- <a href="index.html" class="btn btn-primary justify-center ">Donation</a> -->
+            <div class="flex justify-center gap-5 mt-3 sticky top-16 z-40 bg-white shadow-md py-2">
+                <button class="btn btn-outline btn-success" onclick="window.location.href='index.html'">Donation</button>
+                <button class="btn btn-outline btn-success" onclick="window.location.href='history.html'">History</button>
+            </div>
           
         </div>
 
