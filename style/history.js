@@ -29,7 +29,7 @@ function displayDonationHistory() {
 
         // Display donation details with fallback for missing title
         historyItem.innerHTML = `
-             <h3 class="font-semibold">${entry.amount} BDT Donated for ${entry.title || "unknown"}</h3>
+             <h3 class="font-semibold">${entry.amount} BDT Donated for ${entry.title || "mankind"}</h3>
 
             <p class="text-gray-500 text-sm">Date: ${new Date(entry.date).toLocaleString()}</p>
         `;
@@ -38,15 +38,16 @@ function displayDonationHistory() {
     });
 }
 
+
 // Function to add a new donation
-function addDonation(amount, title) {
+function addDonation(amount,title ) {
     let donationHistory = JSON.parse(localStorage.getItem("donationHistory")) || [];
 
     // Create a new donation entry
     const newDonation = {
         amount: amount,
-        title: title,  // Ensure the title is passed correctly here
-        date: new Date().toISOString()  // Store the current date and time
+        title: title,  
+        date: new Date().toISOString()  
     };
 
     donationHistory.push(newDonation);
