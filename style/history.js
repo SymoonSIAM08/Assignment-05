@@ -1,26 +1,34 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Sample data structure to hold donation history
+let donationHistory = [];
+
+// Function to update the history display
+function updateHistory() {
     const historyList = document.getElementById("historyList");
-    
-    // Load donation history from local storage
-    const donationHistory = JSON.parse(localStorage.getItem("donationHistory")) || [];
+    historyList.innerHTML = ''; // Clear previous entries
 
-    // Function to display donation history
-    function displayHistory() {
-        // Clear existing history
-        historyList.innerHTML = '';
+    // Populate the history section with donations
+    donationHistory.forEach(donation => {
+        const donationEntry = document.createElement("div");
+        donationEntry.className = "p-4 bg-white shadow-md rounded-lg";
+        donationEntry.innerHTML = `
+            <h3 class="font-bold">${donation.amount} BDT donated for ${donation.cardName}</h3>
+            <p>Date: ${donation.date}</p>
+        `;
+        historyList.appendChild(donationEntry);
+    });
+}
 
-        // Loop through donation history and create elements
-        donationHistory.forEach(donation => {
-            const donationItem = document.createElement("div");
-            donationItem.className = "card bg-base-100 shadow-xl p-5";
-            donationItem.innerHTML = `
-                <h2 class="font-bold">${donation.amount} BDT donated for ${donation.cardName}</h2>
-                <p>Date: ${donation.date}</p>
-            `;
-            historyList.appendChild(donationItem);
-        });
-    }
+// Function to simulate adding a donation (this would normally be triggered by the donation process)
+function addDonation(amount, cardName) {
+    const date = new Date().toLocaleString();
+    donationHistory.push({ amount, cardName, date });
+    updateHistory();
+}
 
-    // Call the display function to show history on page load
-    displayHistory();
-});
+// Example usage - Uncomment the line below to simulate donations
+// addDonation(10000, "Flood Relief in Noakhali");
+// addDonation(5000, "Aid for Injured in the Quota Movement");
+
+// Initial population of history (for demo purposes)
+addDonation(10000, "Flood Relief in Noakhali");
+addDonation(5000, "Aid for Injured in the Quota Movement");
