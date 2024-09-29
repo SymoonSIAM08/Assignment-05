@@ -1,5 +1,8 @@
 
 
+
+
+
 // On page load, retrieve the balance from localStorage
 document.addEventListener("DOMContentLoaded", function () {
     let balance = parseFloat(localStorage.getItem("balance")) || 10000;
@@ -19,7 +22,7 @@ function donate(amount, donationType) {
         localStorage.setItem("balance", balance);
         document.getElementById("balanceDisplay").textContent = balance;
 
-        // Show the modal after successful donation
+        // Show the modal after a successful donation
         showModal("Thank you for your contribution!");
 
         // Update received amount in the donation card
@@ -29,6 +32,10 @@ function donate(amount, donationType) {
 
         // Clear the input field
         clearInputFields(donationType);
+
+        // Store donation history in localStorage
+        saveDonationHistory(amount, donationType);
+
     } else {
         alert("Invalid amount. Please enter a valid donation amount within your available balance.");
     }
@@ -59,4 +66,23 @@ function donateAndRedirect(donationType) {
         return;
     }
     donate(donationAmount, donationType);
+}
+
+// Function to save donation history to localStorage
+function saveDonationHistory(amount, donationType) {
+    // Retrieve existing donation history or initialize a new array if not available
+    let donationHistory = JSON.parse(localStorage.getItem('donationHistory')) || [];
+
+    // Create a new entry for the donation
+    const newDonation = {
+        cardName: donationType, // Replace with the actual donation card name if available
+        amount: amount,
+        date: new Date().toISOString()
+    };
+
+    // Add the new donation entry to the history array
+    donationHistory.push(newDonation);
+
+    // Store the updated history back in localStorage
+    localStorage.setItem('donationHistory', JSON.stringify(donationHistory));
 }
